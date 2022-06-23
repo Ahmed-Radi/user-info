@@ -3,7 +3,7 @@
     export let editPerson;
     let dispatch = createEventDispatcher()
     let error = false;
-    let email;
+    let isOpen = false;
     const handleEditSubmit = () => {
         if ( editPerson[0].name &&  editPerson[0].email) {
             let newEditPerson = {
@@ -12,6 +12,7 @@
                 id: editPerson[0].id
             }
             dispatch('editPerson', newEditPerson)
+            dispatch('closeModal', isOpen)
             error = false
         } else {
             error = true

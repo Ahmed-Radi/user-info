@@ -45,13 +45,16 @@
     const addPerson = (e) => {
         data = [e.detail, ...data]
     }
+    const closeModal = (e) => {
+        isOpen = e.detail
+    }
 </script>
 
 <Modal isOpen={isOpen} modalToggle={modalToggle}>
     <div slot="title">
         <p>update user info</p>
     </div>
-    <EditForm editPerson={editPerson} on:editPerson={handleSetEdit} />
+    <EditForm editPerson={editPerson} on:editPerson={handleSetEdit} on:closeModal={closeModal} />
 </Modal>
 <main>
 	<h1 class="header">User Info</h1>
