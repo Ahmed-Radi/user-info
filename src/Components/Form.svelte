@@ -3,14 +3,21 @@
     let dispatch = createEventDispatcher()
     let name;
     let email;
+    let error = false;
     const handleSubmit = () => {
         if (name && email) {
             dispatch('addPerson', {id: Math.random(), name, email})
+            error = false
+        } else {
+            error = true
         }
     }
 </script>
 
 <section class="form">
+    {#if error}
+        <p class="error">Plase enter user name and email</p>
+    {/if}
     <form on:submit|preventDefault={handleSubmit}>
         <label for="name">
             <span class="form_label">Name:</span>
@@ -25,6 +32,10 @@
 </section>
 
 <style>
+    .error {
+        color: red;
+        transition: all 0.5s ease-in;
+    }
     .form {
         width: 50%;
         margin: 50px auto;
